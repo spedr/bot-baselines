@@ -1,0 +1,15 @@
+# Data the deferred jobs need (rsync filter rules, relative to data/). ~43 GB.
+# Excluded: TwiBot-20 per-tweet sequence embeddings (51 GB, BIC only), raw tweet text (no deferred
+# job reads it), Cresci-2015 and HF model weights (no deferred job uses them).
+- /twibot20/emb/roberta-base/tweets_seq_all*
+- /twibot20/tweets/text.bin
+- /twibot22/tweets/text.bin
+- /cresci15/
+- /hf/
+- /logs/
++ /twibot20/***
++ /twibot22/***
++ /methods/***
++ /features/***
++ /status/***
+- *

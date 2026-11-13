@@ -1,0 +1,130 @@
+# Deferred runs for the rented multi-GPU machine (see tools/vast/README.md).
+#
+# Each [[job]] is one process. `cmd` is run from the repo root through the project venv; the token
+# {seed} is replaced by every value in `seeds` (one job per seed). Fields:
+#   est_min  measured wall minutes per job on the local RTX 4070 Ti (orders the queue, longest first)
+#   vram_gb  peak CUDA memory the job needs (max allocated + headroom); the runner packs jobs per GPU
+#            so the sum stays under the card's memory minus a reserve
+#   ram_gb   host memory estimate (private memory; the data files are page cache shared by all jobs)
+#   exclusive = true  run alone on its GPU
+#
+# CONFIRM BEFORE RENTING: commands must match the frozen code after tonight's reviews (flags added by
+# the efficiency reviews are defaults, so no extra flags are expected). Seed 0 of every TwiBot-22 job
+# runs locally; this file holds seeds 1-4 and the RGT runs deferred by the run policy.
+
+[defaults]
+ram_gb = 7.0
+
+# ---------------------------------------------------------------- TwiBot-22, seeds 1-4
+[[job]]
+name = "segcn-tw22"
+cmd = "python -m bb.methods.segcn --dataset twibot22 --seeds {seed} --log-every 1"
+seeds = [1, 2, 3, 4]
+est_min = 72
+vram_gb = 7.5            # 5.04 GB allocated; reserved reached 10 GB before expandable segments
+
+[[job]]
+name = "bic-tw22"
+cmd = "python -m bb.methods.bic --dataset twibot22 --seeds {seed}"
+seeds = [1, 2, 3, 4]
+est_min = 50             # ~0.6-0.9 h after the efficiency review
+vram_gb = 5.0            # 3.49 GB allocated, process cap 6 GB
+
+[[job]]
+name = "rgt-tw22"
+cmd = "python -m bb.methods.rgt --dataset twibot22 --seeds {seed} --vram-cap-gb 6 --log-every 1"
+seeds = [1, 2, 3, 4]
+est_min = 39
+vram_gb = 6.5
+
+[[job]]
+name = "gat-tw22"
+cmd = "python -m bb.methods.gcn_gat --conv gat --dataset twibot22 --seeds {seed} --log-every 1"
+seeds = [1, 2, 3, 4]
+est_min = 25
+vram_gb = 4.5
+
+[[job]]
+name = "botmoe-tw22"
+cmd = "python -m bb.methods.botmoe --dataset twibot22 --seeds {seed}"
+seeds = [1, 2, 3, 4]
+est_min = 24
+vram_gb = 7.0            # 5.6 GB allocated, process cap 6.5 GB
+
+[[job]]
+name = "gcn-tw22"
+cmd = "python -m bb.methods.gcn_gat --conv gcn --dataset twibot22 --seeds {seed} --log-every 1"
+seeds = [1, 2, 3, 4]
+est_min = 22
+vram_gb = 4.5
+
+[[job]]
+name = "hgt-tw22"
+cmd = "python -m bb.methods.simplehgn --dataset twibot22 --model hgt --seeds {seed} --log-every 1"
+seeds = [1, 2, 3, 4]
+est_min = 19
+vram_gb = 4.5
+
+[[job]]
+name = "shgn-tw22"
+cmd = "python -m bb.methods.simplehgn --dataset twibot22 --model shgn --seeds {seed} --log-every 1"
+seeds = [1, 2, 3, 4]
+est_min = 7
+vram_gb = 4.5
+
+[[job]]
+name = "botdgt-tw22"
+cmd = "python -m bb.methods.botdgt --dataset twibot22 --seeds {seed}"
+seeds = [1, 2, 3, 4]
+est_min = 5
+vram_gb = 4.5
+
+[[job]]
+name = "roberta-tw22"
+cmd = "python -m bb.methods.roberta_mlp --dataset twibot22 --seeds {seed} --cuda-graph"
+seeds = [1, 2, 3, 4]
+est_min = 3
+vram_gb = 4.5
+
+[[job]]
+name = "botrgcn-tw22"
+cmd = "python -m bb.methods.botrgcn --dataset twibot22 --seeds {seed}"
+seeds = [1, 2, 3, 4]
+est_min = 2
+vram_gb = 6.0
+
+[[job]]
+name = "botrgcn-wog-tw22"
+cmd = "python -m bb.methods.botrgcn --dataset twibot22 --model wog --seeds {seed}"
+seeds = [1, 2, 3, 4]
+est_min = 1
+vram_gb = 5.5
+
+[[job]]
+name = "botrgcn-mlp2-tw22"
+cmd = "python -m bb.methods.botrgcn --dataset twibot22 --model mlp2 --seeds {seed}"
+seeds = [1, 2, 3, 4]
+est_min = 1
+vram_gb = 4.5
+
+# ---------------------------------------------------------------- RGT on TwiBot-20 (run policy)
+[[job]]
+name = "rgt-tw20"
+cmd = "python -m bb.methods.rgt --dataset twibot20 --seeds {seed} --log-every 25"
+seeds = [1, 2, 3, 4]
+est_min = 17             # after the efficiency review (was ~40 with checkpointing)
+vram_gb = 4.5
+
+[[job]]
+name = "rgt-tw20-paper"
+cmd = "python -m bb.methods.rgt --dataset twibot20 --seeds {seed} --preset paper --log-every 25"
+seeds = [0, 1, 2, 3, 4]
+est_min = 60             # not measured (C=D=8); the efficiency review expects it to fit in 6 GB
+vram_gb = 8.0
+exclusive = true         # unmeasured memory: give it a GPU of its own
+
+[[job]]
+name = "rgt-tw20-extscore-synthetic"
+cmd = "python -m bb.methods.rgt --dataset twibot20 --seeds 0 --log-every 25 --with-extscore synthetic"
+est_min = 17
+vram_gb = 4.5

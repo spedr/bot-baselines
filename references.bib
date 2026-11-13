@@ -1,0 +1,439 @@
+% Bibliography for the methods, datasets and building blocks re-implemented in this repository.
+% Entries come from OpenAlex records (by DOI) unless marked "hand-edited".
+% Hand edits: truncated titles completed, venues normalised, years corrected where OpenAlex
+% records a later re-publication.
+
+% ---------------------------------------------------------------- datasets / benchmarks
+@inproceedings{Feng2022TwiBot22,
+  author    = {Shangbin Feng and Zhaoxuan Tan and Herun Wan and Ningnan Wang and Zilong Chen and Binchi Zhang and Qinghua Zheng and Wenqian Zhang and Zhenyu Lei and Shujie Yang and Xinshun Feng and Qingyue Zhang and Heng Wang and Yuhan Liu and Yuyang Bai and Yanbo Wang and Zijian Cai and Yanbo Wang and Lijing Zheng and Zihan Ma and Jundong Li and Minnan Luo},
+  title     = {TwiBot-22: Towards Graph-Based Twitter Bot Detection},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track},
+  year      = {2022},
+  pages     = {35254--35269},
+  doi       = {10.52202/068431-2555},
+  note      = {arXiv:2206.04564. Code: https://github.com/LuoUndergradXJTU/TwiBot-22 (MIT). Venue hand-edited}
+}
+
+@inproceedings{Feng2021TwiBot20,
+  author    = {Shangbin Feng and Herun Wan and Ningnan Wang and Jundong Li and Minnan Luo},
+  title     = {TwiBot-20: A Comprehensive Twitter Bot Detection Benchmark},
+  booktitle = {ACM International Conference on Information and Knowledge Management (CIKM)},
+  year      = {2021},
+  pages     = {4485--4494},
+  doi       = {10.1145/3459637.3482019}
+}
+
+@article{Cresci2015Fame,
+  author    = {Stefano Cresci and Roberto Di Pietro and Marinella Petrocchi and Angelo Spognardi and Maurizio Tesconi},
+  title     = {Fame for sale: Efficient detection of fake Twitter followers},
+  journal   = {Decision Support Systems},
+  year      = {2015},
+  volume    = {80},
+  pages     = {56--71},
+  doi       = {10.1016/j.dss.2015.09.003}
+}
+
+@inproceedings{Cresci2017Paradigm,
+  author    = {Stefano Cresci and Roberto Di Pietro and Marinella Petrocchi and Angelo Spognardi and Maurizio Tesconi},
+  title     = {The Paradigm-Shift of Social Spambots: Evidence, Theories, and Tools for the Arms Race},
+  booktitle = {International World Wide Web Conference (WWW) Companion},
+  year      = {2017},
+  pages     = {963--972},
+  doi       = {10.1145/3041021.3055135},
+  note      = {Subtitle hand-edited}
+}
+
+@inproceedings{Qiao2025BotSim,
+  author    = {Boyu Qiao and Kun Li and Wei Zhong Zhou and Shilong Li and Qianqian Lü and Songlin Hu},
+  title     = {BotSim: LLM-Powered Malicious Social Botnet Simulation},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year      = {2025},
+  volume    = {39},
+  number    = {13},
+  pages     = {14377--14385},
+  doi       = {10.1609/aaai.v39i13.33575}
+}
+
+@article{Shi2025MGTAB,
+  author    = {Shuhao Shi and Kai Qiao and Zihao Liu and Jie Yang and Chen Chen and Jian Chen and Bin Yan},
+  title     = {MGTAB: A Multi-Relational Graph-Based Twitter Account Detection Benchmark},
+  journal   = {Neurocomputing},
+  year      = {2025},
+  volume    = {647},
+  pages     = {130490},
+  doi       = {10.1016/j.neucom.2025.130490}
+}
+
+% ---------------------------------------------------------------- feature-based methods
+@inproceedings{Lee2011Seven,
+  author    = {Kyumin Lee and Brian David Eoff and James Caverlee},
+  title     = {Seven Months with the Devils: A Long-Term Study of Content Polluters on Twitter},
+  booktitle = {Proceedings of the International AAAI Conference on Web and Social Media (ICWSM)},
+  year      = {2011},
+  volume    = {5},
+  number    = {1},
+  pages     = {185--192},
+  doi       = {10.1609/icwsm.v5i1.14106},
+  note      = {Year hand-corrected: OpenAlex records 2021 (digital re-publication)}
+}
+
+@inproceedings{Beskow2018BotHunter,
+  author    = {David M. Beskow and Kathleen M. Carley},
+  title     = {Bot-hunter: A Tiered Approach to Detecting \& Characterizing Automated Activity on Twitter},
+  booktitle = {SBP-BRiMS: International Conference on Social Computing, Behavioral-Cultural Modeling and Prediction and Behavior Representation in Modeling and Simulation},
+  year      = {2018},
+  note      = {Late-breaking paper. No DOI; not in OpenAlex; hand-written from the PDF and the TwiBot-22 reference list}
+}
+
+@inproceedings{Yang2020Scalable,
+  author    = {Kai-Cheng Yang and Onur Varol and Pik-Mai Hui and Filippo Menczer},
+  title     = {Scalable and Generalizable Social Bot Detection through Data Selection},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year      = {2020},
+  volume    = {34},
+  number    = {01},
+  pages     = {1096--1103},
+  doi       = {10.1609/aaai.v34i01.5460}
+}
+
+@article{Kudugunta2018Deep,
+  author    = {Sneha Kudugunta and Emilio Ferrara},
+  title     = {Deep neural networks for bot detection},
+  journal   = {Information Sciences},
+  year      = {2018},
+  volume    = {467},
+  pages     = {312--322},
+  doi       = {10.1016/j.ins.2018.08.019}
+}
+
+@article{Hayawi2022DeeProBot,
+  author    = {Kadhim Hayawi and Sujith Samuel Mathew and Neethu Venugopal and Mohammad Mehedy Masud and Pin-Han Ho},
+  title     = {DeeProBot: a hybrid deep neural network model for social bot detection based on user profile data},
+  journal   = {Social Network Analysis and Mining},
+  year      = {2022},
+  volume    = {12},
+  number    = {1},
+  pages     = {43},
+  doi       = {10.1007/s13278-022-00869-w}
+}
+
+% ---------------------------------------------------------------- text encoders / generic GNNs
+@article{Liu2019RoBERTa,
+  author    = {Yinhan Liu and Myle Ott and Naman Goyal and Jingfei Du and Mandar Joshi and Danqi Chen and Omer Levy and Mike Lewis and Luke Zettlemoyer and Veselin Stoyanov},
+  title     = {RoBERTa: A Robustly Optimized BERT Pretraining Approach},
+  journal   = {arXiv preprint arXiv:1907.11692},
+  year      = {2019},
+  doi       = {10.48550/arxiv.1907.11692}
+}
+
+@inproceedings{Kipf2017GCN,
+  author    = {Thomas N. Kipf and Max Welling},
+  title     = {Semi-Supervised Classification with Graph Convolutional Networks},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2017},
+  doi       = {10.48550/arxiv.1609.02907},
+  note      = {Venue hand-edited; OpenAlex returns the arXiv record}
+}
+
+@inproceedings{Velickovic2018GAT,
+  author    = {Petar Veli{\v{c}}kovi{\'c} and Guillem Cucurull and Arantxa Casanova and Adriana Romero and Pietro Li{\`o} and Yoshua Bengio},
+  title     = {Graph Attention Networks},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2018},
+  doi       = {10.17863/cam.48429},
+  note      = {Venue and author list hand-edited; OpenAlex returns the Cambridge repository record}
+}
+
+@inproceedings{Schlichtkrull2018RGCN,
+  author    = {Michael Schlichtkrull and Thomas Kipf and Peter Bloem and Rianne van den Berg and Ivan Titov and Max Welling},
+  title     = {Modeling Relational Data with Graph Convolutional Networks},
+  booktitle = {The Semantic Web (ESWC 2018), Lecture Notes in Computer Science},
+  year      = {2018},
+  pages     = {593--607},
+  doi       = {10.1007/978-3-319-93417-4_38}
+}
+
+@inproceedings{Lv2021SimpleHGN,
+  author    = {Qingsong Lv and Ming Ding and Qiang Liu and Yuxiang Chen and Wenzheng Feng and Siming He and Chang Zhou and Jianguo Jiang and Yuxiao Dong and Jie Tang},
+  title     = {Are we really making much progress? Revisiting, benchmarking, and refining heterogeneous graph neural networks},
+  booktitle = {ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
+  year      = {2021},
+  pages     = {1150--1160},
+  doi       = {10.1145/3447548.3467350}
+}
+
+@inproceedings{Hu2020HGT,
+  author    = {Ziniu Hu and Yuxiao Dong and Kuansan Wang and Yizhou Sun},
+  title     = {Heterogeneous Graph Transformer},
+  booktitle = {International World Wide Web Conference (WWW)},
+  year      = {2020},
+  pages     = {2704--2710},
+  doi       = {10.1145/3366423.3380027}
+}
+
+@article{Shazeer2017MoE,
+  author    = {Noam Shazeer and Azalia Mirhoseini and Krzysztof Maziarz and Andy Davis and Quoc Viet Le and Geoffrey E. Hinton and Jeff Dean},
+  title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},
+  journal   = {arXiv preprint arXiv:1701.06538},
+  year      = {2017},
+  doi       = {10.48550/arxiv.1701.06538}
+}
+
+@inproceedings{Sankar2020DySAT,
+  author    = {Aravind Sankar and Yanhong Wu and Liang Gou and Wei Zhang and Hao Yang},
+  title     = {DySAT: Deep Neural Representation Learning on Dynamic Graphs via Self-Attention Networks},
+  booktitle = {ACM International Conference on Web Search and Data Mining (WSDM)},
+  year      = {2020},
+  pages     = {519--527},
+  doi       = {10.1145/3336191.3371845},
+  note      = {Title completed by hand}
+}
+
+@inproceedings{Zhao2022Stars,
+  author    = {Lingxiao Zhao and Wei Jin and Leman Akoglu and Neil Shah},
+  title     = {From Stars to Subgraphs: Uplifting Any GNN with Local Structure Awareness},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2022},
+  doi       = {10.48550/arxiv.2110.03753},
+  note      = {GNN-AK. arXiv:2110.03753. Venue hand-edited}
+}
+
+@inproceedings{Grover2016node2vec,
+  author    = {Aditya Grover and Jure Leskovec},
+  title     = {node2vec: Scalable Feature Learning for Networks},
+  booktitle = {ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
+  year      = {2016},
+  pages     = {855--864},
+  doi       = {10.1145/2939672.2939754}
+}
+
+@article{Li2016Structural,
+  author    = {Angsheng Li and Yicheng Pan},
+  title     = {Structural Information and Dynamical Complexity of Networks},
+  journal   = {IEEE Transactions on Information Theory},
+  year      = {2016},
+  volume    = {62},
+  number    = {6},
+  pages     = {3290--3339},
+  doi       = {10.1109/tit.2016.2555904}
+}
+
+@inproceedings{Wu2022SEP,
+  author    = {Junran Wu and Xueyuan Chen and Ke Xu and Shangzhe Li},
+  title     = {Structural Entropy Guided Graph Hierarchical Pooling},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {162},
+  year      = {2022},
+  doi       = {10.48550/arxiv.2206.13510},
+  note      = {arXiv:2206.13510. Venue hand-edited}
+}
+
+@article{Yang2013Empirical,
+  author    = {Chao Yang and Robert Chandler Harkreader and Guofei Gu},
+  title     = {Empirical Evaluation and New Design for Fighting Evolving Twitter Spammers},
+  journal   = {IEEE Transactions on Information Forensics and Security},
+  year      = {2013},
+  volume    = {8},
+  number    = {8},
+  pages     = {1280--1293},
+  doi       = {10.1109/tifs.2013.2267732}
+}
+
+% ---------------------------------------------------------------- graph bot detectors (selected)
+@inproceedings{Feng2021BotRGCN,
+  author    = {Shangbin Feng and Herun Wan and Ningnan Wang and Minnan Luo},
+  title     = {BotRGCN: Twitter Bot Detection with Relational Graph Convolutional Networks},
+  booktitle = {IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM)},
+  year      = {2021},
+  pages     = {236--239},
+  doi       = {10.1145/3487351.3488336},
+  note      = {arXiv:2106.13092. Title completed by hand (OpenAlex truncates it)}
+}
+
+@inproceedings{Feng2022RGT,
+  author    = {Shangbin Feng and Zhaoxuan Tan and Rui Li and Minnan Luo},
+  title     = {Heterogeneity-Aware Twitter Bot Detection with Relational Graph Transformers},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year      = {2022},
+  volume    = {36},
+  number    = {4},
+  pages     = {3977--3985},
+  doi       = {10.1609/aaai.v36i4.20314}
+}
+
+@inproceedings{Liu2023BotMoE,
+  author    = {Yuhan Liu and Zhaoxuan Tan and Heng Wang and Shangbin Feng and Qinghua Zheng and Minnan Luo},
+  title     = {BotMoE: Twitter Bot Detection with Community-Aware Mixtures of Modal-Specific Experts},
+  booktitle = {International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR)},
+  year      = {2023},
+  pages     = {485--495},
+  doi       = {10.1145/3539618.3591646}
+}
+
+@inproceedings{Lei2023BIC,
+  author    = {Zhenyu Lei and Herun Wan and Wenqian Zhang and Shangbin Feng and Zilong Chen and Jundong Li and Qinghua Zheng and Minnan Luo},
+  title     = {BIC: Twitter Bot Detection with Text-Graph Interaction and Semantic Consistency},
+  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},
+  year      = {2023},
+  pages     = {10326--10340},
+  doi       = {10.18653/v1/2023.acl-long.575}
+}
+
+@inproceedings{Yang2024SEBot,
+  author    = {Yingguang Yang and Qi Wu and Buyun He and Hao Peng and Renyu Yang and Zhifeng Hao and Yong Liao},
+  title     = {SEBot: Structural Entropy Guided Multi-View Contrastive Learning for Social Bot Detection},
+  booktitle = {ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
+  year      = {2024},
+  pages     = {3841--3852},
+  doi       = {10.1145/3637528.3671871}
+}
+
+@inproceedings{He2024BotDGT,
+  author    = {Buyun He and Yingguang Yang and Qi Wu and Hao Liu and Renyu Yang and Hao Peng and Xiang Wang and Yong Liao and Pengyuan Zhou},
+  title     = {Dynamicity-aware Social Bot Detection with Dynamic Graph Transformers},
+  booktitle = {International Joint Conference on Artificial Intelligence (IJCAI)},
+  year      = {2024},
+  pages     = {5844--5852},
+  doi       = {10.24963/ijcai.2024/646}
+}
+
+@article{Liu2024SEGCN,
+  author    = {Feng Liu and Zhenyu Li and Chunfang Yang and Daofu Gong and Haoyu Lu and Fenlin Liu},
+  title     = {SEGCN: a subgraph encoding based graph convolutional network model for social bot detection},
+  journal   = {Scientific Reports},
+  year      = {2024},
+  volume    = {14},
+  number    = {1},
+  pages     = {4122},
+  doi       = {10.1038/s41598-024-54809-z}
+}
+
+% ---------------------------------------------------------------- building blocks used by the re-implementations
+@article{Breiman2001Random,
+  author    = {Leo Breiman},
+  title     = {Random Forests},
+  journal   = {Machine Learning},
+  year      = {2001},
+  volume    = {45},
+  number    = {1},
+  pages     = {5--32},
+  doi       = {10.1023/a:1010933404324}
+}
+
+@article{Chawla2002SMOTE,
+  author    = {Nitesh V. Chawla and Kevin W. Bowyer and Lawrence O. Hall and W. Philip Kegelmeyer},
+  title     = {SMOTE: Synthetic Minority Over-sampling Technique},
+  journal   = {Journal of Artificial Intelligence Research},
+  year      = {2002},
+  volume    = {16},
+  pages     = {321--357},
+  doi       = {10.1613/jair.953}
+}
+
+@article{Wilson1972ENN,
+  author    = {Dennis L. Wilson},
+  title     = {Asymptotic Properties of Nearest Neighbor Rules Using Edited Data},
+  journal   = {IEEE Transactions on Systems, Man, and Cybernetics},
+  year      = {1972},
+  volume    = {SMC-2},
+  number    = {3},
+  pages     = {408--421},
+  doi       = {10.1109/tsmc.1972.4309137}
+}
+
+@article{Freund1997AdaBoost,
+  author    = {Yoav Freund and Robert E. Schapire},
+  title     = {A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting},
+  journal   = {Journal of Computer and System Sciences},
+  year      = {1997},
+  volume    = {55},
+  number    = {1},
+  pages     = {119--139},
+  doi       = {10.1006/jcss.1997.1504}
+}
+
+@inproceedings{Vaswani2017Attention,
+  author    = {Ashish Vaswani and Noam Shazeer and Niki Parmar and Jakob Uszkoreit and Llion Jones and Aidan N. Gomez and {\L}ukasz Kaiser and Illia Polosukhin},
+  title     = {Attention Is All You Need},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2017},
+  volume    = {30},
+  pages     = {5998--6008},
+  doi       = {10.48550/arxiv.1706.03762},
+  note      = {Venue hand-edited}
+}
+
+@article{Sanh2019DistilBERT,
+  author    = {Victor Sanh and Lysandre Debut and Julien Chaumond and Thomas Wolf},
+  title     = {DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter},
+  journal   = {arXiv preprint arXiv:1910.01108},
+  year      = {2019},
+  doi       = {10.48550/arxiv.1910.01108}
+}
+
+@inproceedings{Paszke2019PyTorch,
+  author    = {Adam Paszke and Sam Gross and Francisco Massa and Adam Lerer and James Bradbury and Gregory Chanan and Trevor Killeen and Zeming Lin and Natalia Gimelshein and Luca Antiga and Alban Desmaison and Andreas K{\"o}pf and Edward Yang and Zachary DeVito and Martin Raison and Alykhan Tejani and Sasank Chilamkurthy and Benoit Steiner and Lu Fang and Junjie Bai and Soumith Chintala},
+  title     = {PyTorch: An Imperative Style, High-Performance Deep Learning Library},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2019},
+  volume    = {32},
+  pages     = {8024--8035},
+  doi       = {10.48550/arxiv.1912.01703},
+  note      = {Hand-written}
+}
+
+@article{Fey2019PyG,
+  author    = {Matthias Fey and Jan Eric Lenssen},
+  title     = {Fast Graph Representation Learning with PyTorch Geometric},
+  journal   = {arXiv preprint arXiv:1903.02428},
+  year      = {2019},
+  doi       = {10.48550/arxiv.1903.02428},
+  note      = {ICLR 2019 Workshop on Representation Learning on Graphs and Manifolds. Hand-written}
+}
+
+% ---------------------------------------------------------------- excluded / context only
+@inproceedings{Liu2026HWGNN,
+  author    = {Zida Liu and others},
+  title     = {HW-GNN: Homophily-Aware Gaussian-Window Constrained Graph Spectral Network for Social Network Bot Detection},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026},
+  year      = {2026},
+  pages     = {23509--23525},
+  doi       = {10.18653/2026.findings-emnlp.1111},
+  note      = {arXiv:2511.22493. Excluded (no code). Author list differs between OpenAlex and arXiv; unverified. DOI form as given by OpenAlex, may need a v1/ segment}
+}
+
+@inproceedings{Cai2024LMBot,
+  author    = {Zijian Cai and Zhaoxuan Tan and Zhenyu Lei and Zifeng Zhu and Hongrui Wang and Qinghua Zheng and Minnan Luo},
+  title     = {LMBot: Distilling Graph Knowledge into Language Model for Graph-less Deployment in Twitter Bot Detection},
+  booktitle = {ACM International Conference on Web Search and Data Mining (WSDM)},
+  year      = {2024},
+  pages     = {57--66},
+  doi       = {10.1145/3616855.3635843}
+}
+
+@article{Yang2025BotUmc,
+  author    = {Tao Yang and Yang Hu and Feihong Lu and Ziwei Zhang and Qingyun Sun and Jianxin Li},
+  title     = {BotUmc: An Uncertainty-Aware Twitter Bot Detection with Multi-view Causal Inference},
+  journal   = {arXiv preprint arXiv:2503.03775},
+  year      = {2025},
+  doi       = {10.48550/arxiv.2503.03775}
+}
+
+@inproceedings{Feng2024BotSay,
+  author    = {Shangbin Feng and Herun Wan and Ningnan Wang and Zhaoxuan Tan and Minnan Luo and Yulia Tsvetkov},
+  title     = {What Does the Bot Say? Opportunities and Risks of Large Language Models in Social Media Bot Detection},
+  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},
+  year      = {2024},
+  pages     = {3580--3601},
+  doi       = {10.18653/v1/2024.acl-long.196}
+}
+
+@inproceedings{Tan2023BotPercent,
+  author    = {Zhaoxuan Tan and Shangbin Feng and Melanie Sclar and Herun Wan and Minnan Luo and Yejin Choi and Yulia Tsvetkov},
+  title     = {BotPercent: Estimating Bot Populations in Twitter Communities},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP},
+  year      = {2023},
+  pages     = {14295--14312},
+  doi       = {10.18653/v1/2023.findings-emnlp.954}
+}

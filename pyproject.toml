@@ -1,0 +1,54 @@
+[project]
+name = "bot-baselines"
+version = "0.1.0"
+description = "Re-implementations of published social-bot detection methods on a shared data layer and evaluation harness"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy>=2.1,<2.4",
+    "pandas>=2.2",
+    "pyarrow>=18",
+    "scikit-learn>=1.6",
+    "scipy>=1.14",
+    "numba>=0.61",
+    "ijson>=3.3",
+    "orjson>=3.10",
+    "psutil>=6",
+    "pyyaml>=6",
+    "torch==2.14.0",
+    "torch-geometric>=2.6",
+    "pyg-lib==0.9.0+pt214cu130",
+    "transformers>=4.50",
+    "tokenizers>=0.21",
+    "safetensors>=0.4",
+    "spacy>=3.8,<3.9",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-timeout>=2.3"]
+
+[project.scripts]
+bb = "bb.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bb"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv]
+find-links = ["https://data.pyg.org/whl/torch-2.14.0+cu130.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 600
+addopts = "-q"

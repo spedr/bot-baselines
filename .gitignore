@@ -1,0 +1,21 @@
+# data, raw releases and run outputs stay local
+data/
+raw
+artifacts/
+runs/
+*.pt
+*.npy
+*.memmap
+# environments and caches
+.venv/
+__pycache__/
+*.nbi
+*.nbc
+.pytest_cache/
+.ruff_cache/
+.env
+# local-only notes and run policy
+docs/internal/
+tools/memrun.local
+# results write-ups (published later)
+docs/results/

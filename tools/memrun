@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Run a command (data preprocessing, training, embedding, GPU work) under a hard memory limit so
+# it is killed on its own instead of taking down the machine (written for WSL with 15.9 GB RAM).
+#
+#   tools/memrun [-m 7G] -- <command...>          heavy job, cap <= 7G
+#   tools/memrun --light [-m 2500M] -- <command>  light job, cap <= 2500M
+#   tools/memrun --medium [-m 3G] -- <command>    CPU-only job, cap <= 3G, GPU hidden
+#
+# One job at a time: every mode takes the same exclusive lock
+# /tmp/bot-baselines-heavy.lock, so light, medium and heavy jobs never run concurrently. The modes
+# only differ in their memory cap (and medium hides the GPU). Keep each memrun call bounded
+# (ideally <= ~1 h) so other queued jobs can interleave.
+# - Runs in a systemd user scope with MemoryMax and MemorySwapMax=0: exceeding the limit
+#   OOM-kills this command only (exit 137).
+# - While /tmp/bot-baselines-PAUSE exists, no new job starts (MEMRUN_IGNORE_PAUSE=1 bypasses it;
+#   reserved for the precompute chain).
+# - --no-lock is an alias for --light (kept for old call sites).
+set -euo pipefail
+MEM=""; MODE=heavy
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -m) MEM="$2"; shift 2;;
+    --light|--no-lock) MODE=light; shift;;
+    --medium) MODE=medium; shift;;
+    --) shift; break;;
+    *) break;;
+  esac
+done
+[[ $# -gt 0 ]] || { echo "usage: memrun [-m 7G] [--light|--medium] -- cmd..." >&2; exit 2; }
+
+# Optional local run policy (e.g. which runs are deferred to another machine): tools/memrun.local
+# is sourced when present; it may `exit 0` to skip a command. MEMRUN_NO_POLICY=1 bypasses it.
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ -z "${MEMRUN_NO_POLICY:-}" && -f "$REPO/tools/memrun.local" ]]; then
+  # shellcheck source=/dev/null
+  source "$REPO/tools/memrun.local"
+fi
+
+if [[ -e /tmp/bot-baselines-PAUSE && -z "${MEMRUN_IGNORE_PAUSE:-}" ]]; then
+  echo "memrun: paused by /tmp/bot-baselines-PAUSE; waiting..." >&2
+  while [[ -e /tmp/bot-baselines-PAUSE ]]; do sleep 30; done
+fi
+
+to_mb() { # 10G / 2500M / 2048 -> MB
+  local v=$1
+  case "$v" in
+    *G|*g) echo $(( ${v%[Gg]} * 1024 ));;
+    *M|*m) echo "${v%[Mm]}";;
+    *) echo $(( v / 1048576 ));;
+  esac
+}
+
+case $MODE in
+  light)  DEF=2500M; CAP=2500;;
+  medium) DEF=3G;    CAP=3072;;
+  *)      DEF=7G;    CAP=7168;;
+esac
+MEM=${MEM:-$DEF}
+if (( $(to_mb "$MEM") > CAP )); then
+  echo "memrun: $MODE jobs are capped at ${CAP}M (asked $MEM); using ${CAP}M" >&2; MEM=${CAP}M
+fi
+
+exec 9>/tmp/bot-baselines-heavy.lock
+echo "memrun: waiting for the job lock (one job at a time)..." >&2
+flock 9
+echo "memrun: lock acquired ($MODE), MemoryMax=$MEM" >&2
+if [[ $MODE == medium ]]; then
+  exec systemd-run --user --scope --quiet -p MemoryMax="$MEM" -p MemorySwapMax=0 -- env CUDA_VISIBLE_DEVICES= "$@"
+fi
+exec systemd-run --user --scope --quiet -p MemoryMax="$MEM" -p MemorySwapMax=0 -- "$@"
